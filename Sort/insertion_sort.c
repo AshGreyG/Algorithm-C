@@ -10,13 +10,20 @@ void print(const int* arr, int n) {
     printf("\n");
 }
 
-void insertion_sort(int* arr, int size) {
+void insertion_sort(int* arr, int size, bool invert) {
     for (int i = 2; i <= size; ++i) {
         int key = arr[i - 1];
         int j = i - 1;
-        while (j >= 1 && arr[j - 1] > key) {
-            arr[j] = arr[j - 1];
-            j--;
+        if (invert) {
+            while (j >= 1 && arr[j - 1] < key) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+        } else {
+            while (j >= 1 && arr[j - 1] > key) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
         }
         arr[j] = key;
         print(arr, size);
@@ -30,7 +37,7 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < size; ++i) {
         arr[i] = rand() % 100;
     }
-    insertion_sort(arr, size);
+    insertion_sort(arr, size, false);
     free(arr);
     return 0;
 }
