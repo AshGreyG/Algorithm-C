@@ -7,7 +7,7 @@
 
 struct Stack {
     int element_[100];
-    int top_;
+    unsigned int top_;
 } stack = {.top_ = 0};
 
 void print(struct Stack* s) {
@@ -51,8 +51,6 @@ int pop(struct Stack* s) {
 void clear(struct Stack* s) {
     s->top_ = 0;
 }
-
-
 
 int main() {
     srand(time(NULL));
